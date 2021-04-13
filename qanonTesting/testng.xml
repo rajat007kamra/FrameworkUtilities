@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="TestSuite" parallel="tests" thread-count="2">
+	<listeners>
+		<listener class-name="com.qanonTesting.analyzer.MyTransformer"/>
+	</listeners>
+	
+	<test name="Test1" preserve-order="true">
+    	<classes>
+		<class name="com.qanonTesting.TestNG.SecondSession"/>		
+    	</classes>
+	</test> <!-- Login Test -->
+
+	<test name="Test2" preserve-order="true">
+    	<classes>		
+		<class name="com.qanonTesting.TestNG.FirstSession"/>
+    	</classes>
+	</test> <!-- Login Test -->
+</suite> <!-- Default suite -->

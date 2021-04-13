@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="jarFiles/activation-1.1.1.jar"/>
+	<classpathentry kind="lib" path="jarFiles/commons-collections4-4.1.jar"/>
+	<classpathentry kind="lib" path="jarFiles/commons-compress-1.18.jar"/>
+	<classpathentry kind="lib" path="jarFiles/commons-io-20030203.000550.jar"/>
+	<classpathentry kind="lib" path="jarFiles/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="jarFiles/javax.activation.jar"/>
+	<classpathentry kind="lib" path="jarFiles/javax.mail-1.3.3.01.jar"/>
+	<classpathentry kind="lib" path="jarFiles/jxl-2.6.9.jar"/>
+	<classpathentry kind="lib" path="jarFiles/poi-4.1.1.jar"/>
+	<classpathentry kind="lib" path="jarFiles/poi-examples-3.17.jar"/>
+	<classpathentry kind="lib" path="jarFiles/poi-ooxml-4.1.1.jar"/>
+	<classpathentry kind="lib" path="jarFiles/poi-ooxml-schemas-4.1.1.jar"/>
+	<classpathentry kind="lib" path="jarFiles/poi-scratchpad-3.9-sources.jar"/>
+	<classpathentry kind="lib" path="jarFiles/saxon-8.7.jar"/>
+	<classpathentry kind="lib" path="jarFiles/saxon-dom-8.7.jar"/>
+	<classpathentry kind="lib" path="jarFiles/SaxonLiaison.jar"/>
+	<classpathentry kind="lib" path="jarFiles/selenium-server-standalone-3.141.59.jar"/>
+	<classpathentry kind="lib" path="jarFiles/sikulixapi-2.0.1.jar"/>
+	<classpathentry kind="lib" path="jarFiles/xmlbeans-3.1.0.jar"/>
+	<classpathentry kind="con" path="org.testng.TESTNG_CONTAINER"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

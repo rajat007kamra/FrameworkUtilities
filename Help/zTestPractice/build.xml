@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+	<project name="BNYMellon" default="sendMail" basedir=".">  
+   
+		<!-- ========== Initialize Properties =================================== -->
+		    <property name="project.dir" value="${basedir}"/>
+			<!-- Set JarFiles Folder's Path. -->
+			<property name="jar.dir" value="C:\Users\PPJ\workspace\MTDForums\JarFiles"/>
+		    <property name="build.dir" value="${project.dir}/build"/>
+		    <property name="src.dir" value="${project.dir}/src"/>
+			<property name="ng.result" value="test-output"/>
+
+	<target name="setClassPath">
+		<path id="classpath_jars">
+			<pathelement path="${basedir}/" />
+			<fileset dir="${jar.dir}">
+				<include name="*.jar"/>
+			</fileset>
+		</path>
+		<pathconvert pathsep=":" property="test.classpath" refid="classpath_jars" />
+	</target>
+
+
+	<target name="loadTestNG" depends="setClassPath" >
+		<taskdef resource="testngtasks" classpath="${test.classpath}"/>
+	</target>
+	
+
+	<target name="clean">
+		<echo message="deleting  existing build directory"/>
+		<delete dir="${build.dir}"/>
+	</target>
+
+	<target name="init" depends="clean,setClassPath">
+		<mkdir dir="${build.dir}"/>
+	</target>
+
+
+
+	<target name="compile" depends="clean,init,setClassPath,loadTestNG">
+		<echo message=""/>
+		<echo message="compiling………."/>
+		<javac destdir="${build.dir}" srcdir="${src.dir}" includeantruntime="false" classpath="${test.classpath}"/>
+	</target>
+	
+	
+	<target name="run" depends="compile">
+		<testng classpath="${test.classpath}:${build.dir}">
+			<xmlfileset dir="${basedir}/xmls" includes="testng.xml"/>
+		</testng>
+	</target>
+
+	<target name="makexsltreports" depends="run">
+		<delete dir="${project.dir}/XSLT_Reports/output">
+		</delete> 
+		<mkdir dir="${project.dir}/XSLT_Reports/output"/>
+		<xslt in="${ng.result}/testng-results.xml" style="xmls/testng-results.xsl" out="${project.dir}/XSLT_Reports/output/index.html" classpathref="classpath_jars" processor="SaxonLiaison">
+			<param name="testNgXslt.outputDir" expression="${project.dir}/XSLT_Reports/output/"/>
+			<param name="testNgXslt.showRuntimeTotals" expression="true"/>
+			<param expression="true" name="testNgXslt.sortTestCaseLinks" />
+			<param expression="FAIL,SKIP,PASS,CONF,BY_CLASS" name="testNgXslt.testDetailsFilter" />
+		</xslt>
+	</target>
+		
+	<target name="sendMail" depends="makexsltreports">
+			
+		<zip destfile="${project.dir}/XSLT_Reports/output.zip" basedir="${project.dir}/XSLT_Reports/output" />
+			
+		<mail mailhost="10.125.1.35" tolist="Akapoor@innodata.com" subject="Selenium Test Result Mail Testing" from="ppj@innodata.com" 
+			ssl="false" mailport="25" user="ppj@innodata.com" password="2wsx@WSX" >
+			
+			<message>This is the Testing Mail. The build has finished. And a details report of this build is attached</message>	
+			
+			<attachments>
+				<fileset dir="${project.dir}/XSLT_Reports">
+					<include name="**/*.zip"/>
+				</fileset>
+			</attachments>
+		</mail>
+			
+	</target>
+</project>
